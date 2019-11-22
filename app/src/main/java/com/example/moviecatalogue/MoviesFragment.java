@@ -5,22 +5,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.ArrayList;
 
 public class MoviesFragment extends Fragment {
     private ListMovieAdapter adapter;
     ProgressDialog progressDialog;
     private RecyclerView rvMovies;
+    private MainViewModelMovie mainViewModel;
 
     public MoviesFragment() {
         // Required empty public constructor
@@ -36,32 +36,29 @@ public class MoviesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        rvMovies = getView().findViewById(R.id.rv_movies);
+        adapter = new ListMovieAdapter(getContext());
+        adapter.notifyDataSetChanged();
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        rvMovies.setLayoutManager(layoutManager);
+        rvMovies.setAdapter(adapter);
+
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
-        GetMovieDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetMovieDataService.class);
-        Call<MovieResult> call = service.getAllMovies();
-        call.enqueue(new Callback<MovieResult>() {
-            @Override
-            public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
-                progressDialog.dismiss();
-                generateDataList(response.body());
-            }
+        mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModelMovie.class);
 
+        mainViewModel.setListMovies();
+
+        mainViewModel.getListMovies().observe(this, new Observer<ArrayList<Movie>>() {
             @Override
-            public void onFailure(Call<MovieResult> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            public void onChanged(ArrayList<Movie> movies) {
+                if (movies != null) {
+                    adapter.setData(movies);
+                    progressDialog.dismiss();
+                }
             }
         });
-    }
-
-    private void generateDataList(MovieResult movieList) {
-        rvMovies = getView().findViewById(R.id.rv_movies);
-        adapter = new ListMovieAdapter(getContext(),movieList.getResults());
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        rvMovies.setLayoutManager(layoutManager);
-        rvMovies.setAdapter(adapter);
     }
 }

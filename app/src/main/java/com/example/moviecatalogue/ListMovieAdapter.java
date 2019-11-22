@@ -14,11 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.ListViewHolder> {
-    private List<Movie> listMovie;
+    private List<Movie> listMovie = new ArrayList<>();
     private Context context;
+
+    public ListMovieAdapter(Context context) {
+        this.context = context;
+    }
 
     public ListMovieAdapter(Context context, List<Movie> listMovie) {
         this.context = context;
@@ -72,6 +77,17 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
                 context.startActivity(detailActivityIntent);
             }
         });
+    }
+
+    public void setData(ArrayList<Movie> movies) {
+        if(listMovie == null) {
+            listMovie = new ArrayList<>();
+        }
+        else {
+            listMovie.clear();
+        }
+        listMovie.addAll(movies);
+        notifyDataSetChanged();
     }
 
     @Override

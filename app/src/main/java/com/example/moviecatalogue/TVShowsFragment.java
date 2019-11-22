@@ -5,22 +5,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.ArrayList;
 
 public class TVShowsFragment extends Fragment {
     private ListTVShowAdapter adapter;
     ProgressDialog progressDialog;
     private RecyclerView rvTVShows;
+    private MainViewModelTVShow mainViewModel;
 
     public TVShowsFragment() {
         // Required empty public constructor
@@ -36,32 +36,29 @@ public class TVShowsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        rvTVShows = getView().findViewById(R.id.rv_tvshows);
+        adapter = new ListTVShowAdapter(getContext());
+        adapter.notifyDataSetChanged();
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        rvTVShows.setLayoutManager(layoutManager);
+        rvTVShows.setAdapter(adapter);
+
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
-        GetTVShowDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetTVShowDataService.class);
-        Call<TVShowResult> call = service.getAllTVShows();
-        call.enqueue(new Callback<TVShowResult>() {
-            @Override
-            public void onResponse(Call<TVShowResult> call, Response<TVShowResult> response) {
-                progressDialog.dismiss();
-                generateDataList(response.body());
-            }
+        mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModelTVShow.class);
 
+        mainViewModel.setListTVShows();
+
+        mainViewModel.getListTVShows().observe(this, new Observer<ArrayList<TVShow>>() {
             @Override
-            public void onFailure(Call<TVShowResult> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            public void onChanged(ArrayList<TVShow> tvshows) {
+                if (tvshows != null) {
+                    adapter.setData(tvshows);
+                    progressDialog.dismiss();
+                }
             }
         });
-    }
-
-    private void generateDataList(TVShowResult tvshowList) {
-        rvTVShows = getView().findViewById(R.id.rv_tvshows);
-        adapter = new ListTVShowAdapter(getContext(),tvshowList.getResults());
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        rvTVShows.setLayoutManager(layoutManager);
-        rvTVShows.setAdapter(adapter);
     }
 }

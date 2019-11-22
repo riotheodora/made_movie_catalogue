@@ -14,11 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListTVShowAdapter extends RecyclerView.Adapter<ListTVShowAdapter.ListViewHolder> {
-    private List<TVShow> listTVShow;
+    private List<TVShow> listTVShow = new ArrayList<>();
     private Context context;
+
+    public ListTVShowAdapter(Context context) {
+        this.context = context;
+    }
 
     public ListTVShowAdapter(Context context, List<TVShow> listTVShow) {
         this.context = context;
@@ -72,6 +77,17 @@ public class ListTVShowAdapter extends RecyclerView.Adapter<ListTVShowAdapter.Li
                 context.startActivity(detailActivityIntent);
             }
         });
+    }
+
+    public void setData(ArrayList<TVShow> tvshows) {
+        if(listTVShow == null) {
+            listTVShow = new ArrayList<>();
+        }
+        else {
+            listTVShow.clear();
+        }
+        listTVShow.addAll(tvshows);
+        notifyDataSetChanged();
     }
 
     @Override
