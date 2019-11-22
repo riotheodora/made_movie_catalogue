@@ -1,6 +1,7 @@
 package com.example.moviecatalogue;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ListViewHolder holder, final int position) {
         holder.tvTitle.setText(listMovie.get(position).getTitle());
         holder.tvOverview.setText(listMovie.get(position).getOverview());
 
@@ -63,19 +64,14 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
                 .error(R.drawable.ic_launcher_background)
                 .into(holder.imgPoster);
 
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Movie movie = new Movie();
-//                movie.setTitle(listMovie.get(holder.getAdapterPosition()).getTitle());
-//                movie.setOverview(listMovie.get(holder.getAdapterPosition()).getOverview());
-//                movie.setPoster_path(listMovie.get(holder.getAdapterPosition()).getPoster_path());
-//
-//                Intent detailActivityIntent = new Intent(view.getContext(), MovieDetailActivity.class);
-//                detailActivityIntent.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie);
-//                view.getContext().startActivity(detailActivityIntent);
-//            }
-//        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent detailActivityIntent = new Intent(context, MovieDetailActivity.class);
+                detailActivityIntent.putExtra(MovieDetailActivity.EXTRA_MOVIE, listMovie.get(position));
+                context.startActivity(detailActivityIntent);
+            }
+        });
     }
 
     @Override

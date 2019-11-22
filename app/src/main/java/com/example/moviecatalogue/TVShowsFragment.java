@@ -1,7 +1,11 @@
 package com.example.moviecatalogue;
 
-import android.content.res.TypedArray;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,15 +13,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import java.util.ArrayList;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TVShowsFragment extends Fragment {
+    private ListTVShowAdapter adapter;
+    ProgressDialog progressDialog;
     private RecyclerView rvTVShows;
-    private ArrayList<TVShow> list = new ArrayList<>();
 
     public TVShowsFragment() {
         // Required empty public constructor
@@ -33,31 +36,32 @@ public class TVShowsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        rvTVShows = view.findViewById(R.id.rv_tvshows);
-        rvTVShows.setHasFixedSize(true);
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading....");
+        progressDialog.show();
 
-        list.addAll(getListTVShows());
-        showRecyclerList();
+        GetTVShowDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetTVShowDataService.class);
+        Call<TVShowResult> call = service.getAllTVShows();
+        call.enqueue(new Callback<TVShowResult>() {
+            @Override
+            public void onResponse(Call<TVShowResult> call, Response<TVShowResult> response) {
+                progressDialog.dismiss();
+                generateDataList(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<TVShowResult> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    public ArrayList<TVShow> getListTVShows() {
-        String[] dataName = getResources().getStringArray(R.array.data_title_tvshows);
-        String[] dataDescription = getResources().getStringArray(R.array.data_overview_tvshows);
-        TypedArray dataPoster = getResources().obtainTypedArray(R.array.data_poster_tvshows);
-        ArrayList<TVShow> listTVShow = new ArrayList<>();
-        for (int i = 0; i < dataName.length; i++) {
-            TVShow tvshow = new TVShow();
-            tvshow.setTitle(dataName[i]);
-            tvshow.setOverview(dataDescription[i]);
-            tvshow.setPoster(dataPoster.getResourceId(i, -1));
-            listTVShow.add(tvshow);
-        }
-        return listTVShow;
-    }
-
-    private void showRecyclerList(){
-        rvTVShows.setLayoutManager(new LinearLayoutManager(getContext()));
-        ListTVShowAdapter listTVShowAdapter = new ListTVShowAdapter(list);
-        rvTVShows.setAdapter(listTVShowAdapter);
+    private void generateDataList(TVShowResult tvshowList) {
+        rvTVShows = getView().findViewById(R.id.rv_tvshows);
+        adapter = new ListTVShowAdapter(getContext(),tvshowList.getResults());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        rvTVShows.setLayoutManager(layoutManager);
+        rvTVShows.setAdapter(adapter);
     }
 }

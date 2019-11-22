@@ -3,17 +3,36 @@ package com.example.moviecatalogue;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class TVShow implements Parcelable {
-    private String title;
-    private String overview;
-    private int poster;
+import com.google.gson.annotations.SerializedName;
 
-    public String getTitle() {
-        return title;
+public class TVShow implements Parcelable {
+
+    @SerializedName("id")
+    private Integer id;
+
+    @SerializedName("original_name")
+    private String original_name;
+
+    @SerializedName("overview")
+    private String overview;
+
+    @SerializedName("poster_path")
+    private String poster_path;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getOriginal_name() {
+        return original_name;
+    }
+
+    public void setOriginal_name(String original_name) {
+        this.original_name = original_name;
     }
 
     public String getOverview() {
@@ -24,12 +43,12 @@ public class TVShow implements Parcelable {
         this.overview = overview;
     }
 
-    public int getPoster() {
-        return poster;
+    public String getPoster_path() {
+        return poster_path;
     }
 
-    public void setPoster(int poster) {
-        this.poster = poster;
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
     }
 
     @Override
@@ -39,19 +58,15 @@ public class TVShow implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(this.title);
+        parcel.writeString(this.original_name);
         parcel.writeString(this.overview);
-        parcel.writeInt(this.poster);
-    }
-
-    TVShow(){
-
+        parcel.writeString(this.poster_path);
     }
 
     protected TVShow(Parcel in) {
-        this.title = in.readString();
+        this.original_name = in.readString();
         this.overview = in.readString();
-        this.poster = in.readInt();
+        this.poster_path = in.readString();
     }
 
     public static final Creator<TVShow> CREATOR = new Creator<TVShow>() {

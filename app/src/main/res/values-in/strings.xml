@@ -1,91 +1,13 @@
 <resources>
     <string name="app_name">Movie Catalogue</string>
 
-    <string name="tab_text_1">Movies</string>
-    <string name="tab_text_2">TV Shows</string>
-    <string name="title_movies">Movie Titles</string>
-    <string name="overview_movies">Overview</string>
-    <string name="title_tvshows">TV Shows Titles</string>
-    <string name="overview_tvshows">Overview</string>
+    <string name="tab_text_1">Film</string>
+    <string name="tab_text_2">Serial TV</string>
+    <string name="title_movies">Judul Film</string>
+    <string name="overview_movies">Sinopsis</string>
+    <string name="title_tvshows">Judul Serial TV</string>
+    <string name="overview_tvshows">Sinopsis</string>
     <string name="menu_1">Ubah Pengaturan Bahasa</string>
 
     <string name="poster">Poster</string>
-
-    <string-array name="data_title_movies">
-        <item>Avengers: Infinity War</item>
-        <item>Spider-Man: Into the Spider-Verse</item>
-        <item>Bohemian Rhapsody</item>
-        <item>Venom</item>
-        <item>Robin Hood</item>
-        <item>Mortal Engines</item>
-        <item>Bumblebee</item>
-        <item>A Star Is Born</item>
-        <item>Aquaman</item>
-        <item>Mary Poppins Returns</item>
-    </string-array>
-
-    <string-array name="data_title_tvshows">
-        <item>The Mandalorian</item>
-        <item>Rick and Morty</item>
-        <item>Arrow</item>
-        <item>The Flash</item>
-        <item>The Simpsons</item>
-        <item>Supernatural</item>
-        <item>Grey\'s Anatomy</item>
-        <item>Game of Thrones</item>
-        <item>Breaking Bad</item>
-        <item>Marvel\'s Agents of S.H.I.E.L.D</item>
-    </string-array>
-
-    <string-array name="data_overview_movies">
-        <item>Ketika Avengers dan sekutu mereka terus melindungi dunia dari ancaman yang terlalu besar untuk ditangani oleh satu pahlawan, bahaya baru telah muncul dari bayang-bayang kosmik: Thanos. Seorang lalim kekejian intergalaksi, tujuannya adalah untuk mengumpulkan semua enam Batu Infinity, artefak dengan kekuatan tak terbayangkan, dan menggunakannya untuk mewujudkan keinginannya yang gila pada semua kenyataan. Segala yang Avengers telah perjuangkan telah mengarah ke saat ini - nasib Bumi dan keberadaannya sendiri tidak pernah lebih tidak pasti. </item>
-        <item>Miles Morales menyulap hidupnya antara menjadi siswa sekolah menengah dan menjadi manusia laba-laba. Ketika Wilson "Kingpin" Fisk menggunakan collider super, yang lain dari seberang Spider-Verse diangkut ke dimensi ini. </item>
-        <item>Penyanyi Freddie Mercury, gitaris Brian May, drummer Roger Taylor dan gitaris bass John Deacon mengambil dunia musik dengan badai ketika mereka membentuk band rock \'n\' roll Queen pada tahun 1970. Lagu-lagu hit menjadi klasik instan. Ketika gaya hidup Mercury yang semakin liar mulai lepas kendali, Queen segera menghadapi tantangan terbesarnya - menemukan cara untuk menjaga band bersama di tengah kesuksesan dan kelebihan. </item>
-        <item>Jurnalis investigasi Eddie Brock mencoba untuk kembali setelah skandal, tetapi secara tidak sengaja menjadi tuan rumah Venom, seorang simbiot alien yang sangat kuat dan sakti. Segera, ia harus mengandalkan kekuatan barunya untuk melindungi dunia dari organisasi bayangan yang mencari simbiosis mereka sendiri. </item>
-        <item>Seorang pejuang perang yang keras dan komandan Moornya melakukan pemberontakan yang berani melawan mahkota Inggris yang korup. </item>
-        <item>Beribu-ribu tahun di masa depan, kota-kota di bumi menjelajah dunia dengan roda besar, saling melahap dalam perjuangan untuk sumber daya yang semakin berkurang. Di salah satu kota traksi besar ini, London tua, Tom Natsworthy mengalami perjumpaan tak terduga dengan seorang wanita muda misterius dari daerah terlantar yang akan mengubah jalan hidupnya selamanya. </item>
-        <item>Dalam pelarian pada tahun 1987, Bumblebee menemukan tempat perlindungan di tempat barang rongsokan di kota pantai kecil California. Charlie, di puncak usia 18 dan berusaha menemukan tempatnya di dunia, menemukan Bumblebee, bekas luka pertempuran dan patah. Ketika Charlie menghidupkannya, dia dengan cepat mengetahui bahwa ini bukan bug VW kuning biasa. </item>
-        <item>Musisi kawakan Jackson Maine menemukan - dan jatuh cinta dengan - artis yang sedang berjuang Ally. Dia baru saja menyerah pada mimpinya untuk menjadi besar sebagai penyanyi - sampai Jack membujuknya menjadi sorotan. Tetapi bahkan ketika karier Ally lepas landas, sisi pribadi dari hubungan mereka hancur, ketika Jack berjuang terus-menerus dengan setan-setan internalnya sendiri. </item>
-        <item>Dulunya merupakan rumah bagi peradaban paling maju di Bumi, Atlantis sekarang merupakan kerajaan bawah laut yang diperintah oleh Raja Orm yang haus kekuasaan. Dengan pasukan yang sangat besar, Orm berencana untuk menaklukkan orang-orang samudera yang tersisa dan kemudian ke permukaan dunia. Yang menghalangi jalannya adalah Arthur Curry, saudara tiri manusia setengah manusia Orm dan pewaris sejati takhta. </item>
-        <item>Dalam London era Depresi, Jane dan Michael Banks yang sudah dewasa, bersama dengan tiga anak Michael, dikunjungi oleh Mary Poppins yang penuh teka-teki setelah kehilangan pribadi. Melalui keterampilan magisnya yang unik, dan dengan bantuan temannya Jack, dia membantu keluarga menemukan kembali sukacita dan keajaiban yang hilang dalam hidup mereka. </item>
-    </string-array>
-
-    <string-array name="data_overview_tvshows">
-        <item>Berlatar waktu setelah jatuhnya Empire dan sebelum munculnya First Order, kita mengikuti upaya seorang penembak jitu di bagian luar galaksi yang jauh dari otoritas New Republic. </item>
-        <item>Rick adalah orang tua yang tidak seimbang secara mental tetapi berbakat secara ilmiah yang baru-baru ini terhubung kembali dengan keluarganya. Dia menghabiskan sebagian besar waktunya dengan melibatkan cucunya yang muda, Morty, dalam petualangan berbahaya dan aneh di luar angkasa dan alam semesta alternatif. Ditambah dengan kehidupan keluarga Morty yang sudah tidak stabil, peristiwa-peristiwa ini menyebabkan Morty sangat tertekan di rumah dan sekolah. </item>
-        <item>Playboy miliarder manja, Oliver Queen, hilang dan diduga tewas ketika kapal pesiarnya hilang di laut. Dia kembali lima tahun kemudian sebagai seorang pria yang berbeda, bertekad untuk membersihkan kota sebagai vigilante berkerudung dan bersenjatakan busur. </item>
-        <item>Setelah akselerator partikel menyebabkan badai aneh, Penyelidik CSI Barry Allen disambar petir dan jatuh koma. Beberapa bulan kemudian dia terbangun dengan kekuatan kecepatan super, memberinya kemampuan untuk bergerak melalui Central City seperti malaikat penjaga yang tak terlihat. Meskipun awalnya senang dengan kekuatan barunya, Barry terkejut menemukan bahwa dia bukan satu-satunya "manusia meta" yang diciptakan setelah ledakan akselerator - dan tidak semua orang menggunakan kekuatan baru mereka untuk kebaikan. Barry bermitra dengan S.T.A.R. Lab dan mendedikasikan hidupnya untuk melindungi yang tidak bersalah. Untuk saat ini, hanya beberapa teman dekat dan rekan yang tahu bahwa Barry secara harfiah adalah manusia tercepat, tetapi tidak akan lama sampai dunia mengetahui bahwa Barry Allen telah menjadi ... The Flash. </item>
-        <item>Bertempat di Springfield, kota rata-rata di Amerika, pertunjukan ini berfokus pada kejenakaan dan petualangan sehari-hari keluarga Simpson; Homer, Marge, Bart, Lisa dan Maggie, serta ribuan karakter virtual. Sejak awal, serial ini telah menjadi ikon budaya pop, menarik ratusan selebriti menjadi bintang tamu. Acara ini juga menjadi terkenal karena satirnya yang tak kenal takut terhadap kehidupan politik, media, dan Amerika secara umum. </item>
-        <item>Ketika mereka masih kecil, Sam dan Dean Winchester kehilangan ibu mereka karena kekuatan gaib yang misterius dan iblis. Selanjutnya, ayah mereka membesarkan mereka menjadi tentara. Dia mengajari mereka tentang kejahatan paranormal yang hidup di sudut-sudut gelap dan di jalan belakang Amerika ... dan dia mengajari mereka cara membunuhnya. Sekarang, Winchester bersaudara itu menjelajahi negara itu dengan Chevy Impala \'67 mereka, memerangi setiap jenis ancaman supernatural yang mereka temui di sepanjang jalan. </item>
-        <item>Ikuti kehidupan pribadi dan profesional sekelompok dokter di Rumah Sakit Gray Sloan Memorial di Seattle. </item>
-        <item>Tujuh keluarga bangsawan berjuang untuk menguasai tanah mitos Westeros. Gesekan antara rumah-rumah mengarah ke perang skala besar. Semua terjadi saat kejahatan yang sangat kuno terbangun di utara terjauh. Di tengah-tengah perang, orde militer yang diabaikan, Night\'s Watch, menjadi satu-satunya yang berdiri di antara alam manusia dan kengerian yang beku di luarnya. </item>
-        <item>Ketika Walter White, seorang guru kimia New Mexico, didiagnosis dengan kanker stadium III dan diberi prognosis hanya dua tahun lagi untuk hidup. Dia dipenuhi dengan rasa tidak takut dan keinginan yang tak henti-hentinya untuk mengamankan masa depan keuangan keluarganya dengan harga apa pun ketika dia memasuki dunia narkoba dan kejahatan yang berbahaya. </item>
-        <item>Agen Phil Coulson dari S.H.I.E.L.D. (Strategic Homeland Intervention, Enforcement and Logistics Division) membentuk sebuah tim untuk menyelidiki hal-hal baru, aneh dan yang tidak diketahui di seluruh dunia, melindungi yang orang biasa dari hal-hal yang luar biasa. </item>
-    </string-array>
-
-    <array name="data_poster_movies">
-        <item>@drawable/poster_avengerinfinity</item>
-        <item>@drawable/poster_spiderman</item>
-        <item>@drawable/poster_bohemian</item>
-        <item>@drawable/poster_venom</item>
-        <item>@drawable/poster_robinhood</item>
-        <item>@drawable/poster_mortalengine</item>
-        <item>@drawable/poster_bumblebee</item>
-        <item>@drawable/poster_a_star</item>
-        <item>@drawable/poster_aquaman</item>
-        <item>@drawable/poster_marypoppins</item>
-    </array>
-
-    <array name="data_poster_tvshows">
-        <item>@drawable/poster_mandalorian</item>
-        <item>@drawable/poster_rick_and_morty</item>
-        <item>@drawable/poster_arrow</item>
-        <item>@drawable/poster_flash</item>
-        <item>@drawable/poster_simpsons</item>
-        <item>@drawable/poster_supernatural</item>
-        <item>@drawable/poster_grays_anatomy</item>
-        <item>@drawable/poster_game_of_thrones</item>
-        <item>@drawable/poster_breaking_bad</item>
-        <item>@drawable/poster_agents_of_shield</item>
-    </array>
 </resources>

@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jakewharton.picasso.OkHttp3Downloader;
+import com.squareup.picasso.Picasso;
+
 public class TVShowDetailActivity extends AppCompatActivity {
     public static final String EXTRA_TVSHOW = "extra_tvshow";
 
@@ -20,8 +23,16 @@ public class TVShowDetailActivity extends AppCompatActivity {
 
         TVShow tvshow = getIntent().getParcelableExtra(EXTRA_TVSHOW);
 
-        ivPoster.setImageResource(tvshow.getPoster());
-        tvTitle.setText(tvshow.getTitle());
+        String urlGambar = "https://image.tmdb.org/t/p/w185/" + tvshow.getPoster_path();
+
+        Picasso.Builder builder = new Picasso.Builder(getApplicationContext());
+        builder.downloader(new OkHttp3Downloader(getApplicationContext()));
+        builder.build().load(urlGambar)
+                .placeholder((R.drawable.ic_launcher_background))
+                .error(R.drawable.ic_launcher_background)
+                .into(ivPoster);
+
+        tvTitle.setText(tvshow.getOriginal_name());
         tvOverview.setText(tvshow.getOverview());
     }
 }
