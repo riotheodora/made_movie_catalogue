@@ -44,13 +44,13 @@ public class MoviesFragment extends Fragment {
     public ArrayList<Movie> getListMovies() {
         String[] dataName = getResources().getStringArray(R.array.data_title_movies);
         String[] dataDescription = getResources().getStringArray(R.array.data_overview_movies);
-        TypedArray dataPoster = getResources().obtainTypedArray(R.array.data_poster_movies);
+        String[] dataPoster = getResources().getStringArray(R.array.data_poster_movies);
         ArrayList<Movie> listMovie = new ArrayList<>();
         for (int i = 0; i < dataName.length; i++) {
             Movie movie = new Movie();
             movie.setTitle(dataName[i]);
             movie.setOverview(dataDescription[i]);
-            movie.setPoster(dataPoster.getResourceId(i, -1));
+            movie.setPoster_path(dataPoster[i]);
             listMovie.add(movie);
         }
         return listMovie;

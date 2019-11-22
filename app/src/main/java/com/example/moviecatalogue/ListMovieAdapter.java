@@ -34,7 +34,7 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
         Movie movie = listMovie.get(position);
 
         Glide.with(holder.itemView.getContext())
-                .load(movie.getPoster())
+                .load(movie.getPoster_path())
                 .apply(new RequestOptions().override(300, 450))
                 .into(holder.imgPoster);
         holder.tvTitle.setText(movie.getTitle());
@@ -46,7 +46,7 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
                 Movie movie = new Movie();
                 movie.setTitle(listMovie.get(holder.getAdapterPosition()).getTitle());
                 movie.setOverview(listMovie.get(holder.getAdapterPosition()).getOverview());
-                movie.setPoster(listMovie.get(holder.getAdapterPosition()).getPoster());
+                movie.setPoster_path(listMovie.get(holder.getAdapterPosition()).getPoster_path());
 
                 Intent detailActivityIntent = new Intent(view.getContext(), MovieDetailActivity.class);
                 detailActivityIntent.putExtra(MovieDetailActivity.EXTRA_MOVIE, movie);

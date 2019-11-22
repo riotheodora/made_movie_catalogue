@@ -3,11 +3,25 @@ package com.example.moviecatalogue;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Movie implements Parcelable {
-    private String title;
-    private String overview;
-    private int poster;
+import com.google.gson.annotations.SerializedName;
 
+public class Movie implements Parcelable {
+    @SerializedName("id")
+    private Integer id;
+    @SerializedName("title")
+    private String title;
+    @SerializedName("overview")
+    private String overview;
+    @SerializedName("poster_path")
+    private String poster_path;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getTitle() {
         return title;
     }
@@ -24,12 +38,12 @@ public class Movie implements Parcelable {
         this.overview = overview;
     }
 
-    public int getPoster() {
-        return poster;
+    public String getPoster_path() {
+        return poster_path;
     }
 
-    public void setPoster(int poster) {
-        this.poster = poster;
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
     }
 
     @Override
@@ -41,7 +55,7 @@ public class Movie implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.title);
         dest.writeString(this.overview);
-        dest.writeInt(this.poster);
+        dest.writeString(this.poster_path);
     }
 
     Movie() {
@@ -51,7 +65,7 @@ public class Movie implements Parcelable {
     private Movie(Parcel in) {
         this.title = in.readString();
         this.overview = in.readString();
-        this.poster = in.readInt();
+        this.poster_path = in.readString();
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -65,4 +79,5 @@ public class Movie implements Parcelable {
             return new Movie[size];
         }
     };
+
 }

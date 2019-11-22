@@ -1,6 +1,7 @@
 package com.example.moviecatalogue;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,8 +20,8 @@ public class MovieDetailActivity extends AppCompatActivity {
         TextView tvOverview = findViewById(R.id.tv_overview_received);
 
         Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
-
-        ivPoster.setImageResource(movie.getPoster());
+        Log.e("ivPoster", "onCreate: "+ivPoster );
+        //ivPoster.setImageURI(movie.getPoster_path());
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
     }
