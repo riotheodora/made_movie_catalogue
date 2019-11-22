@@ -20,7 +20,6 @@ public class MovieDetailActivity extends AppCompatActivity {
         TextView tvOverview = findViewById(R.id.tv_overview_received);
 
         Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
-        Log.e("ivPoster", "onCreate: "+ivPoster );
         //ivPoster.setImageURI(movie.getPoster_path());
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
