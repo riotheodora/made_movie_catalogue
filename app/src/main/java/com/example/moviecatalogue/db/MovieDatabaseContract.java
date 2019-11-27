@@ -5,9 +5,9 @@ import android.provider.BaseColumns;
 public class MovieDatabaseContract {
     static String TABLE_NAME = "favoriteMovie";
 
-    static final class MovieColumns implements BaseColumns {
-        static String TITLE = "movie_title";
-        static String OVERVIEW = "movie_overview";
-        static String POSTER = "movie_poster";
+    public static final class MovieColumns implements BaseColumns {
+        public static String TITLE = "movie_title";
+        public static String OVERVIEW = "movie_overview";
+        public static String POSTER = "movie_poster";
     }
 }

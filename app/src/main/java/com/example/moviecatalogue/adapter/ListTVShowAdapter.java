@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moviecatalogue.R;
-import com.example.moviecatalogue.TVShow;
+import com.example.moviecatalogue.entity.TVShow;
 import com.example.moviecatalogue.TVShowDetailActivity;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;

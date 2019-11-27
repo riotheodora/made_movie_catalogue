@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.moviecatalogue.adapter.ListTVShowAdapter;
 import com.example.moviecatalogue.MainViewModelTVShow;
 import com.example.moviecatalogue.R;
-import com.example.moviecatalogue.TVShow;
+import com.example.moviecatalogue.entity.TVShow;
 
 import java.util.ArrayList;
 

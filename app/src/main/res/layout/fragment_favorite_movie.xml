@@ -6,7 +6,7 @@
     tools:context=".fragment.FavoriteMovieFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_movies"
+        android:id="@+id/rv_favmovies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_row_favorite_movies" />

@@ -1,5 +1,6 @@
 package com.example.moviecatalogue;
 
+import com.example.moviecatalogue.entity.TVShow;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;

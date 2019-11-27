@@ -43,16 +43,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_favorite_list:
                 Intent intent = new Intent(this, FavoriteActivity.class);
                 startActivity(intent);
-                return super.onOptionsItemSelected(item);
+                break;
 
             case R.id.action_change_settings:
                 Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
                 startActivity(mIntent);
-                return super.onOptionsItemSelected(item);
-
-            default:
-                return super.onOptionsItemSelected(item);
-
+                break;
         }
+        return super.onOptionsItemSelected(item);
     }
 }

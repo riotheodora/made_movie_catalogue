@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.moviecatalogue.entity.TVShow;
 import com.example.moviecatalogue.service.GetTVShowDataService;
 
 import java.util.ArrayList;

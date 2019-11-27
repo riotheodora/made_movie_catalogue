@@ -8,35 +8,36 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import static android.provider.BaseColumns._ID;
-import static com.example.moviecatalogue.db.TVShowDatabaseContract.TABLE_NAME;
+import static com.example.moviecatalogue.db.MovieDatabaseContract.TABLE_NAME;
 
-public class TVShowHelper {
+public class FavMovieHelper {
     private static final String DATABASE_TABLE = TABLE_NAME;
     private static DatabaseHelper dataBaseHelper;
-    private static TVShowHelper INSTANCE;
+    private static FavMovieHelper INSTANCE;
     private static SQLiteDatabase database;
 
-    private TVShowHelper(Context context) {
+    private FavMovieHelper(Context context) {
         dataBaseHelper = new DatabaseHelper(context);
     }
 
-    public static TVShowHelper getInstance(Context context) {
+    // initiate database
+    public static FavMovieHelper getInstance(Context context) {
         if (INSTANCE == null) {
             synchronized (SQLiteOpenHelper.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = new TVShowHelper(context);
+                    INSTANCE = new FavMovieHelper(context);
                 }
             }
         }
         return INSTANCE;
     }
 
-    // open TV Show database connection
+    // open Movie database connection
     public void open() throws SQLException {
         database = dataBaseHelper.getWritableDatabase();
     }
 
-    // close TV Show database connection
+    // close Movie database connection
     public void close() {
         dataBaseHelper.close();
         if (database.isOpen())

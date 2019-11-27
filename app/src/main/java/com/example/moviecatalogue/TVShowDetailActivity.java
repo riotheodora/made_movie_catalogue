@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.moviecatalogue.entity.TVShow;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 

@@ -11,26 +11,27 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviecatalogue.entity.Movie;
 import com.example.moviecatalogue.MovieDetailActivity;
 import com.example.moviecatalogue.R;
+import com.example.moviecatalogue.entity.FavMovie;
+import com.example.moviecatalogue.entity.Movie;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.ListViewHolder> {
-    private List<Movie> listMovie = new ArrayList<>();
+public class FavListMovieAdapter extends RecyclerView.Adapter<FavListMovieAdapter.ListViewHolder> {
+    private List<FavMovie> favMovieList = new ArrayList<>();
     private Context context;
 
-    public ListMovieAdapter(Context context) {
+    public FavListMovieAdapter(Context context) {
         this.context = context;
     }
 
-    public ListMovieAdapter(Context context, List<Movie> listMovie) {
+    public FavListMovieAdapter(Context context, List<FavMovie> favMovieList) {
         this.context = context;
-        this.listMovie = listMovie;
+        this.favMovieList = favMovieList;
     }
 
     class ListViewHolder extends RecyclerView.ViewHolder {
@@ -54,16 +55,16 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
-        View view = layoutInflater.inflate(R.layout.item_row_movies, viewGroup, false);
+        View view = layoutInflater.inflate(R.layout.item_row_favorite_movies, viewGroup, false);
         return new ListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ListViewHolder holder, final int position) {
-        holder.tvTitle.setText(listMovie.get(position).getTitle());
-        holder.tvOverview.setText(listMovie.get(position).getOverview());
+        holder.tvTitle.setText(favMovieList.get(position).getTitle());
+        holder.tvOverview.setText(favMovieList.get(position).getOverview());
 
-        String urlGambar = "https://image.tmdb.org/t/p/w185/" + listMovie.get(position).getPoster_path();
+        String urlGambar = "";
 
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttp3Downloader(context));
@@ -71,30 +72,21 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)
                 .into(holder.imgPoster);
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent detailActivityIntent = new Intent(context, MovieDetailActivity.class);
-                detailActivityIntent.putExtra(MovieDetailActivity.EXTRA_MOVIE, listMovie.get(position));
-                context.startActivity(detailActivityIntent);
-            }
-        });
     }
 
-    public void setData(ArrayList<Movie> movies) {
-        if(listMovie == null) {
-            listMovie = new ArrayList<>();
+    public void setData(ArrayList<FavMovie> favMovies) {
+        if(favMovieList == null) {
+            favMovieList = new ArrayList<>();
         }
         else {
-            listMovie.clear();
+            favMovieList.clear();
         }
-        listMovie.addAll(movies);
+        favMovieList.addAll(favMovies);
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return listMovie.size();
+        return favMovieList.size();
     }
 }
