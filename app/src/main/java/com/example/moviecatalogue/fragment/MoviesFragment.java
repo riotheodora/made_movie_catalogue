@@ -1,4 +1,4 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.fragment;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -13,6 +13,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.moviecatalogue.adapter.ListMovieAdapter;
+import com.example.moviecatalogue.MainViewModelMovie;
+import com.example.moviecatalogue.Movie;
+import com.example.moviecatalogue.R;
 
 import java.util.ArrayList;
 

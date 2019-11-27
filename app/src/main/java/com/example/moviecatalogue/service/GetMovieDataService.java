@@ -1,4 +1,6 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.service;
+
+import com.example.moviecatalogue.MovieResult;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

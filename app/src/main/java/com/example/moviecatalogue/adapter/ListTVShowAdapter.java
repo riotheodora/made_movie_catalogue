@@ -1,4 +1,4 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,23 +11,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.moviecatalogue.R;
+import com.example.moviecatalogue.TVShow;
+import com.example.moviecatalogue.TVShowDetailActivity;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.ListViewHolder> {
-    private List<Movie> listMovie = new ArrayList<>();
+public class ListTVShowAdapter extends RecyclerView.Adapter<ListTVShowAdapter.ListViewHolder> {
+    private List<TVShow> listTVShow = new ArrayList<>();
     private Context context;
 
-    public ListMovieAdapter(Context context) {
+    public ListTVShowAdapter(Context context) {
         this.context = context;
     }
 
-    public ListMovieAdapter(Context context, List<Movie> listMovie) {
+    public ListTVShowAdapter(Context context, List<TVShow> listTVShow) {
         this.context = context;
-        this.listMovie = listMovie;
+        this.listTVShow = listTVShow;
     }
 
     class ListViewHolder extends RecyclerView.ViewHolder {
@@ -51,16 +54,16 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
-        View view = layoutInflater.inflate(R.layout.item_row_movies, viewGroup, false);
+        View view = layoutInflater.inflate(R.layout.item_row_tvshow, viewGroup, false);
         return new ListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ListViewHolder holder, final int position) {
-        holder.tvTitle.setText(listMovie.get(position).getTitle());
-        holder.tvOverview.setText(listMovie.get(position).getOverview());
+        holder.tvTitle.setText(listTVShow.get(position).getOriginal_name());
+        holder.tvOverview.setText(listTVShow.get(position).getOverview());
 
-        String urlGambar = "https://image.tmdb.org/t/p/w185/" + listMovie.get(position).getPoster_path();
+        String urlGambar = "https://image.tmdb.org/t/p/w185/" + listTVShow.get(position).getPoster_path();
 
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttp3Downloader(context));
@@ -72,26 +75,26 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent detailActivityIntent = new Intent(context, MovieDetailActivity.class);
-                detailActivityIntent.putExtra(MovieDetailActivity.EXTRA_MOVIE, listMovie.get(position));
+                Intent detailActivityIntent = new Intent(context, TVShowDetailActivity.class);
+                detailActivityIntent.putExtra(TVShowDetailActivity.EXTRA_TVSHOW, listTVShow.get(position));
                 context.startActivity(detailActivityIntent);
             }
         });
     }
 
-    public void setData(ArrayList<Movie> movies) {
-        if(listMovie == null) {
-            listMovie = new ArrayList<>();
+    public void setData(ArrayList<TVShow> tvshows) {
+        if(listTVShow == null) {
+            listTVShow = new ArrayList<>();
         }
         else {
-            listMovie.clear();
+            listTVShow.clear();
         }
-        listMovie.addAll(movies);
+        listTVShow.addAll(tvshows);
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return listMovie.size();
+        return listTVShow.size();
     }
 }

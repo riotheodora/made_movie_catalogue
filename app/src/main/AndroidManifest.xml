@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.moviecatalogue">
-
-    <!--Internet Permission-->
+    <!-- Internet Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,17 +10,31 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".TVShowDetailActivity">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity
+            android:name=".FavoriteActivity"
+            android:parentActivityName="com.example.moviecatalogue.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.moviecatalogue.MainActivity" />
         </activity>
-        <activity android:name=".MovieDetailActivity">
+
+        <activity
+            android:name=".TVShowDetailActivity"
+            android:parentActivityName="com.example.moviecatalogue.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.moviecatalogue.MainActivity" />
         </activity>
+
+        <activity
+            android:name=".MovieDetailActivity"
+            android:parentActivityName="com.example.moviecatalogue.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.moviecatalogue.MainActivity" />
+        </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

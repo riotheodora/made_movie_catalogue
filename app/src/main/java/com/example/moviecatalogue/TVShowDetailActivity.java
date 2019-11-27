@@ -1,8 +1,10 @@
 package com.example.moviecatalogue;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +18,11 @@ public class TVShowDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tvshow_detail);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ImageView ivPoster = findViewById(R.id.iv_poster_received);
         TextView tvTitle = findViewById(R.id.tv_title_received);
@@ -34,5 +41,11 @@ public class TVShowDetailActivity extends AppCompatActivity {
 
         tvTitle.setText(tvshow.getOriginal_name());
         tvOverview.setText(tvshow.getOverview());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.detail_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }

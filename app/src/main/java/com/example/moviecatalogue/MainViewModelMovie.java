@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.moviecatalogue.service.GetMovieDataService;
+
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -14,7 +16,7 @@ public class MainViewModelMovie extends ViewModel {
     private static final String API_KEY = "ee8db69c065a14a15bb13e12ab61a116";
     private MutableLiveData<ArrayList<Movie>> listMovies = new MutableLiveData<>();
 
-    void setListMovies() {
+    public void setListMovies() {
         GetMovieDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetMovieDataService.class);
         Call<MovieResult> call = service.getAllMovies();
         call.enqueue(new Callback<MovieResult>() {
@@ -36,7 +38,7 @@ public class MainViewModelMovie extends ViewModel {
         });
     }
 
-    LiveData<ArrayList<Movie>> getListMovies() {
+    public LiveData<ArrayList<Movie>> getListMovies() {
         return listMovies;
     }
 }

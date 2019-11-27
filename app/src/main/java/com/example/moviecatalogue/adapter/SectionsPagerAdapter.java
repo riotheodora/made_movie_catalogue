@@ -1,13 +1,16 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.adapter;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.example.moviecatalogue.R;
+import com.example.moviecatalogue.fragment.MoviesFragment;
+import com.example.moviecatalogue.fragment.TVShowsFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 

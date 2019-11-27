@@ -8,6 +8,8 @@
     <string name="title_tvshows">Judul Serial TV</string>
     <string name="overview_tvshows">Sinopsis</string>
     <string name="menu_1">Ubah Pengaturan Bahasa</string>
+    <string name="menu_2">Favoritkan</string>
+    <string name="menu_3">Daftar Favorit</string>
 
     <string name="poster">Poster</string>
 </resources>
