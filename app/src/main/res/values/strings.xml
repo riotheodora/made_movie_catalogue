@@ -10,8 +10,11 @@
     <string name="menu_1">Change Language Settings</string>
     <string name="menu_2">Favorite</string>
     <string name="menu_3">Favorite List</string>
+    <string name="search">Search</string>
 
     <string name="poster">Poster</string>
     <string name="favorite_list">Your Favorite Movies</string>
     <string name="poster_description">Poster Description</string>
+
+    <string name="search_hint">Input Keyword</string>
 </resources>

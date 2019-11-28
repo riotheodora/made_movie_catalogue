@@ -3,6 +3,8 @@ package com.example.moviecatalogue.fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,10 +16,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviecatalogue.adapter.ListMovieAdapter;
-import com.example.moviecatalogue.viewmodel.MainViewModelMovie;
-import com.example.moviecatalogue.entity.Movie;
 import com.example.moviecatalogue.R;
+import com.example.moviecatalogue.adapter.ListMovieAdapter;
+import com.example.moviecatalogue.entity.Movie;
+import com.example.moviecatalogue.viewmodel.MainViewModelMovie;
 
 import java.util.ArrayList;
 
@@ -35,11 +37,21 @@ public class MoviesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_movies, container, false);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.fragment_menu, menu);
+
+        super.onCreateOptionsMenu(menu,inflater);
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        
 
         rvMovies = getView().findViewById(R.id.rv_movies);
         adapter = new ListMovieAdapter(getContext());
