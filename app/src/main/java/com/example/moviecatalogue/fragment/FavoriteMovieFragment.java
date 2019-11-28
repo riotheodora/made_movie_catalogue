@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 
 public class FavoriteMovieFragment extends Fragment {
     private FavListMovieAdapter adapter;
-    ProgressDialog progressDialog;
+    private ProgressDialog progressDialog;
     private RecyclerView rvfavMovies;
     private MainViewModelFavMovie mainViewModel;
 
@@ -53,7 +54,7 @@ public class FavoriteMovieFragment extends Fragment {
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
-        mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModelFavMovie.class);
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModelFavMovie.class);
 
         mainViewModel.setFavListMovies();
 

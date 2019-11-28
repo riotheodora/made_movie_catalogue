@@ -36,7 +36,7 @@ public class FavListMovieAdapter extends RecyclerView.Adapter<FavListMovieAdapte
 
     class ListViewHolder extends RecyclerView.ViewHolder {
 
-        public final View mView;
+        final View mView;
 
         private ImageView imgPoster;
         TextView tvTitle, tvOverview;
@@ -64,11 +64,11 @@ public class FavListMovieAdapter extends RecyclerView.Adapter<FavListMovieAdapte
         holder.tvTitle.setText(favMovieList.get(position).getTitle());
         holder.tvOverview.setText(favMovieList.get(position).getOverview());
 
-        String urlGambar = "";
+        String uri = favMovieList.get(position).getPoster_path();
 
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttp3Downloader(context));
-        builder.build().load(urlGambar)
+        builder.build().load(uri)
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)
                 .into(holder.imgPoster);
