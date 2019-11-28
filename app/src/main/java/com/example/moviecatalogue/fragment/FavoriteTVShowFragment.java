@@ -59,9 +59,9 @@ public class FavoriteTVShowFragment extends Fragment {
 
         mainViewModel.getFavListTVShows().observe(this, new Observer<ArrayList<FavTVShow>>(){
             @Override
-            public void onChanged(ArrayList<FavTVShow> favMovies) {
-                if (favMovies != null) {
-                    adapter.setData(favMovies);
+            public void onChanged(ArrayList<FavTVShow> favTVShows) {
+                if (favTVShows != null) {
+                    adapter.setData(favTVShows);
                     progressDialog.dismiss();
                 }
             }

@@ -64,6 +64,7 @@ public class FavListTVShowAdapter extends RecyclerView.Adapter<FavListTVShowAdap
     @Override
     public void onBindViewHolder(@NonNull final ListViewHolder holder, final int position) {
         favTVShowHelper = FavTVShowHelper.getInstance(null);
+        favTVShowHelper.open();
 
         holder.tvTitle.setText(favTVShowList.get(position).getOriginal_name());
         holder.tvOverview.setText(favTVShowList.get(position).getOverview());

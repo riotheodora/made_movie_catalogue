@@ -23,6 +23,8 @@ public class MainViewModelFavMovie extends AndroidViewModel {
 
     public void setFavListMovies() {
         favMovieHelper = FavMovieHelper.getInstance(getApplication().getApplicationContext());
+        favMovieHelper.open();
+
         favMovieHelper.queryAll();
         ArrayList<FavMovie> favMovies = MappingHelper.mapCursorToArrayList(favMovieHelper.queryAll());
         listMovies.setValue(favMovies);
