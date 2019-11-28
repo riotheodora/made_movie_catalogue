@@ -6,7 +6,7 @@
     tools:context=".fragment.FavoriteTVShowFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_tvshows"
+        android:id="@+id/rv_favtvshows"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_row_favorite_tvshow" />

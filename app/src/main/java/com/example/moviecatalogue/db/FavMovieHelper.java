@@ -7,7 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static android.provider.BaseColumns._ID;
+import static com.example.moviecatalogue.db.MovieDatabaseContract.MovieColumns._ID;
 import static com.example.moviecatalogue.db.MovieDatabaseContract.TABLE_NAME;
 
 public class FavMovieHelper {

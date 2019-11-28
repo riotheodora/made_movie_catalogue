@@ -58,12 +58,14 @@ public class TVShow implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(this.id);
         parcel.writeString(this.original_name);
         parcel.writeString(this.overview);
         parcel.writeString(this.poster_path);
     }
 
-    protected TVShow(Parcel in) {
+    private TVShow(Parcel in) {
+        this.id = in.readInt();
         this.original_name = in.readString();
         this.overview = in.readString();
         this.poster_path = in.readString();

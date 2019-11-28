@@ -58,12 +58,14 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(this.id);
         parcel.writeString(this.title);
         parcel.writeString(this.overview);
         parcel.writeString(this.poster_path);
     }
 
     public Movie(Parcel in) {
+        this.id = in.readInt();
         this.title = in.readString();
         this.overview = in.readString();
         this.poster_path = in.readString();

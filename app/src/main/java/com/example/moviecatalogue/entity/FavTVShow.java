@@ -1,11 +1,8 @@
 package com.example.moviecatalogue.entity;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.SerializedName;
 
-public class FavTVShow implements Parcelable {
+public class FavTVShow {
 
     @SerializedName("id")
     private Integer id;
@@ -51,33 +48,10 @@ public class FavTVShow implements Parcelable {
         this.poster_path = poster_path;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public FavTVShow(int id, String title, String overview, String poster_path) {
+        this.id = id;
+        this.original_name = title;
+        this.overview = overview;
+        this.poster_path = poster_path;
     }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(this.original_name);
-        parcel.writeString(this.overview);
-        parcel.writeString(this.poster_path);
-    }
-
-    protected FavTVShow(Parcel in) {
-        this.original_name = in.readString();
-        this.overview = in.readString();
-        this.poster_path = in.readString();
-    }
-
-    public static final Creator<FavTVShow> CREATOR = new Creator<FavTVShow>() {
-        @Override
-        public FavTVShow createFromParcel(Parcel in) {
-            return new FavTVShow(in);
-        }
-
-        @Override
-        public FavTVShow[] newArray(int size) {
-            return new FavTVShow[size];
-        }
-    };
 }

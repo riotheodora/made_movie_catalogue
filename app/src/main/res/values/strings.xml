@@ -12,4 +12,5 @@
     <string name="menu_3">Favorite List</string>
 
     <string name="poster">Poster</string>
+    <string name="favorite_list">Your Favorite Movies</string>
 </resources>

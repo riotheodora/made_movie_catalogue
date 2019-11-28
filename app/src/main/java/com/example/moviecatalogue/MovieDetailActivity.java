@@ -27,7 +27,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -66,6 +66,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
             ContentValues contentValues = new ContentValues();
 
+            contentValues.put(MovieDatabaseContract.MovieColumns._ID, movie.getId());
             contentValues.put(MovieDatabaseContract.MovieColumns.TITLE, movie.getTitle() );
             contentValues.put(MovieDatabaseContract.MovieColumns.OVERVIEW, movie.getOverview());
             contentValues.put(MovieDatabaseContract.MovieColumns.POSTER, movie.getPoster_path());

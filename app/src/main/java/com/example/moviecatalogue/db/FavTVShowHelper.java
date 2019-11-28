@@ -7,8 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static android.provider.BaseColumns._ID;
 import static com.example.moviecatalogue.db.TVShowDatabaseContract.TABLE_NAME;
+import static com.example.moviecatalogue.db.TVShowDatabaseContract.TVShowColumns._ID;
 
 public class FavTVShowHelper {
     private static final String DATABASE_TABLE = TABLE_NAME;

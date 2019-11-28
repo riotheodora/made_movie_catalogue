@@ -14,7 +14,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainViewModelTVShow extends ViewModel {
-    private static final String API_KEY = "ee8db69c065a14a15bb13e12ab61a116";
     private MutableLiveData<ArrayList<TVShow>> listTVShow = new MutableLiveData<>();
 
     public void setListTVShows() {

@@ -48,7 +48,8 @@ public class FavMovie {
         this.poster_path = poster_path;
     }
 
-    public FavMovie(String title, String overview, String poster_path) {
+    public FavMovie(int id, String title, String overview, String poster_path) {
+        this.id = id;
         this.title = title;
         this.overview = overview;
         this.poster_path = poster_path;
