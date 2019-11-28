@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviecatalogue.MainViewModelFavMovie;
+import com.example.moviecatalogue.viewmodel.MainViewModelFavMovie;
 import com.example.moviecatalogue.R;
 import com.example.moviecatalogue.adapter.FavListMovieAdapter;
 import com.example.moviecatalogue.entity.FavMovie;

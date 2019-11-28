@@ -1,20 +1,19 @@
 package com.example.moviecatalogue.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviecatalogue.MovieDetailActivity;
 import com.example.moviecatalogue.R;
+import com.example.moviecatalogue.db.FavMovieHelper;
 import com.example.moviecatalogue.entity.FavMovie;
-import com.example.moviecatalogue.entity.Movie;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
@@ -24,6 +23,7 @@ import java.util.List;
 public class FavListMovieAdapter extends RecyclerView.Adapter<FavListMovieAdapter.ListViewHolder> {
     private List<FavMovie> favMovieList = new ArrayList<>();
     private Context context;
+    private FavMovieHelper favMovieHelper;
 
     public FavListMovieAdapter(Context context) {
         this.context = context;
@@ -40,6 +40,7 @@ public class FavListMovieAdapter extends RecyclerView.Adapter<FavListMovieAdapte
 
         private ImageView imgPoster;
         TextView tvTitle, tvOverview;
+        Button removeButton;
 
         ListViewHolder(View itemView) {
             super(itemView);
@@ -48,6 +49,7 @@ public class FavListMovieAdapter extends RecyclerView.Adapter<FavListMovieAdapte
             imgPoster = mView.findViewById(R.id.img_poster);
             tvTitle = mView.findViewById(R.id.tv_item_title);
             tvOverview = mView.findViewById(R.id.tv_item_description);
+            removeButton = mView.findViewById(R.id.btn_remove);
         }
     }
 
@@ -61,6 +63,8 @@ public class FavListMovieAdapter extends RecyclerView.Adapter<FavListMovieAdapte
 
     @Override
     public void onBindViewHolder(@NonNull final ListViewHolder holder, final int position) {
+        favMovieHelper = FavMovieHelper.getInstance(null);
+
         holder.tvTitle.setText(favMovieList.get(position).getTitle());
         holder.tvOverview.setText(favMovieList.get(position).getOverview());
 
@@ -72,6 +76,15 @@ public class FavListMovieAdapter extends RecyclerView.Adapter<FavListMovieAdapte
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)
                 .into(holder.imgPoster);
+
+        holder.removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favMovieHelper.deleteById(String.valueOf(favMovieList.get(position).getId()));
+                favMovieList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     public void setData(ArrayList<FavMovie> favMovies) {

@@ -1,6 +1,6 @@
 package com.example.moviecatalogue.service;
 
-import com.example.moviecatalogue.TVShowResult;
+import com.example.moviecatalogue.entity.TVShowResult;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

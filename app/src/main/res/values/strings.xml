@@ -13,4 +13,5 @@
 
     <string name="poster">Poster</string>
     <string name="favorite_list">Your Favorite Movies</string>
+    <string name="poster_description">Poster Description</string>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moviecatalogue.R;
-import com.example.moviecatalogue.entity.FavMovie;
+import com.example.moviecatalogue.db.FavTVShowHelper;
 import com.example.moviecatalogue.entity.FavTVShow;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
@@ -22,6 +23,7 @@ import java.util.List;
 public class FavListTVShowAdapter extends RecyclerView.Adapter<FavListTVShowAdapter.ListViewHolder> {
     private List<FavTVShow> favTVShowList = new ArrayList<>();
     private Context context;
+    private FavTVShowHelper favTVShowHelper;
 
     public FavListTVShowAdapter(Context context) {
         this.context = context;
@@ -38,6 +40,7 @@ public class FavListTVShowAdapter extends RecyclerView.Adapter<FavListTVShowAdap
 
         private ImageView imgPoster;
         TextView tvTitle, tvOverview;
+        Button removeButton;
 
         ListViewHolder(View itemView) {
             super(itemView);
@@ -46,6 +49,7 @@ public class FavListTVShowAdapter extends RecyclerView.Adapter<FavListTVShowAdap
             imgPoster = mView.findViewById(R.id.img_poster);
             tvTitle = mView.findViewById(R.id.tv_item_title);
             tvOverview = mView.findViewById(R.id.tv_item_description);
+            removeButton = mView.findViewById(R.id.btn_remove);
         }
     }
 
@@ -59,6 +63,8 @@ public class FavListTVShowAdapter extends RecyclerView.Adapter<FavListTVShowAdap
 
     @Override
     public void onBindViewHolder(@NonNull final ListViewHolder holder, final int position) {
+        favTVShowHelper = FavTVShowHelper.getInstance(null);
+
         holder.tvTitle.setText(favTVShowList.get(position).getOriginal_name());
         holder.tvOverview.setText(favTVShowList.get(position).getOverview());
 
@@ -70,6 +76,15 @@ public class FavListTVShowAdapter extends RecyclerView.Adapter<FavListTVShowAdap
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)
                 .into(holder.imgPoster);
+
+        holder.removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favTVShowHelper.deleteById(String.valueOf(favTVShowList.get(position).getId()));
+                favTVShowList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     public void setData(ArrayList<FavTVShow> favTVShows) {

@@ -1,9 +1,8 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.moviecatalogue.entity.TVShow;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class TVShowResult implements Parcelable {
         }
     };
 
-    ArrayList<TVShow> getResults() {
+    public ArrayList<TVShow> getResults() {
         return results;
     }
 

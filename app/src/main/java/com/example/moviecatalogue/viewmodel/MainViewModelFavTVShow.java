@@ -1,4 +1,4 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.viewmodel;
 
 import android.app.Application;
 

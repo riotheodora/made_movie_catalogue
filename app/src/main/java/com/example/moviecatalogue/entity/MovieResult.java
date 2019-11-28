@@ -1,9 +1,8 @@
-package com.example.moviecatalogue;
+package com.example.moviecatalogue.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.moviecatalogue.entity.Movie;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class MovieResult implements Parcelable {
     public MovieResult() {
     }
 
-    protected MovieResult(Parcel in) {
+    private MovieResult(Parcel in) {
         this.results = in.createTypedArrayList(Movie.CREATOR);
     }
 
