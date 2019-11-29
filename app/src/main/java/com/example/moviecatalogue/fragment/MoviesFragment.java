@@ -2,7 +2,6 @@ package com.example.moviecatalogue.fragment;
 
 import android.app.ProgressDialog;
 import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,11 +9,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -31,55 +30,45 @@ import java.util.ArrayList;
 public class MoviesFragment extends Fragment {
     private ListMovieAdapter adapter;
     private ProgressDialog progressDialog;
-    private MainViewModelMovie mainViewModel;
-
-    private SearchView searchView = null;
-    private SearchView.OnQueryTextListener queryTextListener;
 
     public MoviesFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        setHasOptionsMenu(true);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_movies, container, false);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu,inflater);
-        menu.clear();
         inflater.inflate(R.menu.search_menu, menu);
 
+        MenuItem searchMenu = menu.findItem(R.id.action_search);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(getContext().SEARCH_SERVICE);
 
-        if (searchManager != null) {
-            searchView = (SearchView) searchItem.getActionView();
+        if (searchManager != null){
+            final SearchView searchView = (SearchView) searchMenu.getActionView();
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
             searchView.setQueryHint(getResources().getString(R.string.search_hint));
-            queryTextListener = (new SearchView.OnQueryTextListener() {
+
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    Toast.makeText(getActivity(), query, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
                     return true;
                 }
 
                 @Override
-                public boolean onQueryTextChange(String s) {
+                public boolean onQueryTextChange(String newText) {
                     return false;
                 }
             });
-            searchView.setOnQueryTextListener(queryTextListener);
         }
     }
 
@@ -97,7 +86,7 @@ public class MoviesFragment extends Fragment {
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
-        mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModelMovie.class);
+        MainViewModelMovie mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModelMovie.class);
 
         mainViewModel.setListMovies();
 
@@ -110,14 +99,5 @@ public class MoviesFragment extends Fragment {
                 }
             }
         });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_search){
-
-        }
-        searchView.setOnQueryTextListener(queryTextListener);
-        return super.onOptionsItemSelected(item);
     }
 }

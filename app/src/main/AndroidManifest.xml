@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.moviecatalogue">
+
     <!-- Internet Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <permission android:name="com.example.moviecatalogue.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.example.moviecatalogue.WRITE_DATABASE" android:protectionLevel="normal"/>
 
     <application
         android:allowBackup="true"
@@ -11,31 +15,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <provider
+            android:name=".provider.FavMovieProvider"
+            android:authorities="com.example.moviecatalogue"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.example.moviecatalogue.READ_DATABASE"
+            android:writePermission="com.example.moviecatalogue.WRITE_DATABASE"/>
+
         <activity
             android:name=".FavoriteActivity"
             android:label="@string/favorite_list"
-            android:parentActivityName="com.example.moviecatalogue.MainActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.moviecatalogue.MainActivity" />
         </activity>
-
         <activity
             android:name=".TVShowDetailActivity"
-            android:parentActivityName="com.example.moviecatalogue.MainActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.moviecatalogue.MainActivity" />
         </activity>
-
         <activity
             android:name=".MovieDetailActivity"
-            android:parentActivityName="com.example.moviecatalogue.MainActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.moviecatalogue.MainActivity" />
         </activity>
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
