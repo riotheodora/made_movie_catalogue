@@ -1,4 +1,4 @@
-package com.example.moviecatalogue.fragment;
+package com.example.mywatchlist.fragment;
 
 import android.app.ProgressDialog;
 import android.app.SearchManager;
@@ -21,10 +21,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviecatalogue.R;
-import com.example.moviecatalogue.adapter.ListTVShowAdapter;
-import com.example.moviecatalogue.entity.TVShow;
-import com.example.moviecatalogue.viewmodel.MainViewModelTVShow;
+import com.example.mywatchlist.R;
+import com.example.mywatchlist.adapter.ListTVShowAdapter;
+import com.example.mywatchlist.entity.TVShow;
+import com.example.mywatchlist.viewmodel.MainViewModelTVShow;
 
 import java.util.ArrayList;
 

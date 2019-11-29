@@ -1,4 +1,4 @@
-package com.example.moviecatalogue.fragment;
+package com.example.mywatchlist.fragment;
 
 import android.app.ProgressDialog;
 import android.app.SearchManager;
@@ -21,21 +21,22 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviecatalogue.R;
-import com.example.moviecatalogue.adapter.ListTVShowAdapter;
-import com.example.moviecatalogue.entity.TVShow;
-import com.example.moviecatalogue.viewmodel.MainViewModelTVShow;
+import com.example.mywatchlist.R;
+import com.example.mywatchlist.adapter.ListMovieAdapter;
+import com.example.mywatchlist.entity.Movie;
+import com.example.mywatchlist.viewmodel.MainViewModelMovie;
 
 import java.util.ArrayList;
 
-public class TVShowsFragment extends Fragment {
-    private ListTVShowAdapter adapter;
+public class MoviesFragment extends Fragment {
+    private ListMovieAdapter adapter;
     private ProgressDialog progressDialog;
+    private MainViewModelMovie mainViewModel;
 
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
 
-    public TVShowsFragment() {
+    public MoviesFragment() {
         // Required empty public constructor
     }
 
@@ -49,13 +50,15 @@ public class TVShowsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tvshows, container, false);
+        return inflater.inflate(R.layout.fragment_movies, container, false);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.search_menu, menu);
         super.onCreateOptionsMenu(menu,inflater);
+        menu.clear();
+        inflater.inflate(R.menu.search_menu, menu);
+
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
@@ -83,26 +86,26 @@ public class TVShowsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView rvTVShows = getView().findViewById(R.id.rv_tvshows);
-        adapter = new ListTVShowAdapter(getContext());
+        RecyclerView rvMovies = getView().findViewById(R.id.rv_movies);
+        adapter = new ListMovieAdapter(getContext());
         adapter.notifyDataSetChanged();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        rvTVShows.setLayoutManager(layoutManager);
-        rvTVShows.setAdapter(adapter);
+        rvMovies.setLayoutManager(layoutManager);
+        rvMovies.setAdapter(adapter);
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
-        MainViewModelTVShow mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModelTVShow.class);
+        mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModelMovie.class);
 
-        mainViewModel.setListTVShows();
+        mainViewModel.setListMovies();
 
-        mainViewModel.getListTVShows().observe(this, new Observer<ArrayList<TVShow>>() {
+        mainViewModel.getListMovies().observe(this, new Observer<ArrayList<Movie>>() {
             @Override
-            public void onChanged(ArrayList<TVShow> tvshows) {
-                if (tvshows != null) {
-                    adapter.setData(tvshows);
+            public void onChanged(ArrayList<Movie> movies) {
+                if (movies != null) {
+                    adapter.setData(movies);
                     progressDialog.dismiss();
                 }
             }
