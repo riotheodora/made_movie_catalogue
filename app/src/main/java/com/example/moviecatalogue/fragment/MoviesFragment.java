@@ -3,13 +3,13 @@ package com.example.moviecatalogue.fragment;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +30,7 @@ import java.util.ArrayList;
 public class MoviesFragment extends Fragment {
     private ListMovieAdapter adapter;
     private ProgressDialog progressDialog;
+    private MainViewModelMovie mainViewModel;
 
     public MoviesFragment() {
         // Required empty public constructor
@@ -60,7 +61,10 @@ public class MoviesFragment extends Fragment {
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
+
+                    mainViewModel.setSpecificListMovies(query);
+
                     return true;
                 }
 
@@ -86,7 +90,7 @@ public class MoviesFragment extends Fragment {
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
-        MainViewModelMovie mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModelMovie.class);
+        mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModelMovie.class);
 
         mainViewModel.setListMovies();
 
@@ -94,6 +98,9 @@ public class MoviesFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<Movie> movies) {
                 if (movies != null) {
+
+                    Log.e("onChange", "CALLME" );
+
                     adapter.setData(movies);
                     progressDialog.dismiss();
                 }

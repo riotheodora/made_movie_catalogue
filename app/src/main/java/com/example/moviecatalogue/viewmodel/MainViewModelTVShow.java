@@ -1,12 +1,14 @@
 package com.example.moviecatalogue.viewmodel;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.moviecatalogue.RetrofitClientInstance;
-import com.example.moviecatalogue.entity.TVShowResult;
 import com.example.moviecatalogue.entity.TVShow;
+import com.example.moviecatalogue.entity.TVShowResult;
 import com.example.moviecatalogue.service.GetTVShowDataService;
 
 import java.util.ArrayList;
@@ -36,6 +38,31 @@ public class MainViewModelTVShow extends ViewModel {
 
             @Override
             public void onFailure(Call<TVShowResult> call, Throwable t) {
+            }
+        });
+    }
+
+    public void setSpecificListTVShows(String query) {
+        GetTVShowDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetTVShowDataService.class);
+        Call<TVShowResult> call = service.getSearchedTVShows(query);
+
+        call.enqueue(new Callback<TVShowResult>() {
+            @Override
+            public void onResponse(Call<TVShowResult> call, Response<TVShowResult> response) {
+                TVShowResult tvShowResult = response.body();
+
+                if(tvShowResult.getResults().size() > 0) {
+                    listTVShow.setValue(tvShowResult.getResults());
+                    Log.e("ISI PERTAMA", tvShowResult.getResults().get(0).getOriginal_name());
+                }
+                else {
+                    listTVShow.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TVShowResult> call, Throwable t) {
+                Log.e("STATE", "onFailure");
             }
         });
     }

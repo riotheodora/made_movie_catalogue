@@ -2,7 +2,6 @@ package com.example.moviecatalogue.fragment;
 
 import android.app.ProgressDialog;
 import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,11 +9,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -31,14 +29,10 @@ import java.util.ArrayList;
 public class TVShowsFragment extends Fragment {
     private ListTVShowAdapter adapter;
     private ProgressDialog progressDialog;
+    private MainViewModelTVShow mainViewModelTVShow;
 
     public TVShowsFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -51,22 +45,26 @@ public class TVShowsFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.search_menu, menu);
         super.onCreateOptionsMenu(menu,inflater);
+        inflater.inflate(R.menu.search_menu, menu);
 
         MenuItem searchMenu = menu.findItem(R.id.action_search);
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
 
-        if (searchManager != null) {
-            final SearchView searchView = (SearchView) searchMenu.getActionView();
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(getContext().SEARCH_SERVICE);
+
+        if (searchManager != null){
+            final androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) searchMenu.getActionView();
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
             searchView.setQueryHint(getResources().getString(R.string.search_hint));
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
-                    return false;
+//                    Toast.makeText(getContext(), query, Toast.LENGTH_SHORT).show();
+
+                    mainViewModelTVShow.setSpecificListTVShows(query);
+
+                    return true;
                 }
 
                 @Override
@@ -91,15 +89,18 @@ public class TVShowsFragment extends Fragment {
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
-        MainViewModelTVShow mainViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModelTVShow.class);
+        mainViewModelTVShow = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModelTVShow.class);
 
-        mainViewModel.setListTVShows();
+        mainViewModelTVShow.setListTVShows();
 
-        mainViewModel.getListTVShows().observe(this, new Observer<ArrayList<TVShow>>() {
+        mainViewModelTVShow.getListTVShows().observe(this, new Observer<ArrayList<TVShow>>() {
             @Override
-            public void onChanged(ArrayList<TVShow> tvshows) {
-                if (tvshows != null) {
-                    adapter.setData(tvshows);
+            public void onChanged(ArrayList<TVShow> tvShows) {
+                if (tvShows != null) {
+
+//                    Log.e("onChange", "CALLME" );
+
+                    adapter.setData(tvShows);
                     progressDialog.dismiss();
                 }
             }
