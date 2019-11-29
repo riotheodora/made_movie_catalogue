@@ -11,9 +11,9 @@ import androidx.annotation.Nullable;
 
 import com.example.moviecatalogue.db.FavTVShowHelper;
 
-import static com.example.moviecatalogue.db.MovieDatabaseContract.AUTHORITY;
-import static com.example.moviecatalogue.db.MovieDatabaseContract.CONTENT_URI;
-import static com.example.moviecatalogue.db.MovieDatabaseContract.TABLE_NAME;
+import static com.example.moviecatalogue.db.TVShowDatabaseContract.AUTHORITY;
+import static com.example.moviecatalogue.db.TVShowDatabaseContract.CONTENT_URI;
+import static com.example.moviecatalogue.db.TVShowDatabaseContract.TABLE_NAME;
 
 public class FavTVShowProvider extends ContentProvider {
     private static final int TV_SHOW = 1;
@@ -71,13 +71,10 @@ public class FavTVShowProvider extends ContentProvider {
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
         long added;
-        switch (sUriMatcher.match(uri)) {
-            case TV_SHOW:
-                added = favTVShowHelper.insert(values);
-                break;
-            default:
-                added = 0;
-                break;
+        if (sUriMatcher.match(uri) == TV_SHOW) {
+            added = favTVShowHelper.insert(values);
+        } else {
+            added = 0;
         }
 
         getContext().getContentResolver().notifyChange(CONTENT_URI, null);
@@ -90,13 +87,10 @@ public class FavTVShowProvider extends ContentProvider {
     public int update(@NonNull Uri uri, @Nullable ContentValues values,
                       @Nullable String selection, @Nullable String[] selectionArgs) {
         int updated;
-        switch (sUriMatcher.match(uri)) {
-            case TV_SHOW_ID:
-                updated = favTVShowHelper.update(uri.getLastPathSegment(), values);
-                break;
-            default:
-                updated = 0;
-                break;
+        if (sUriMatcher.match(uri) == TV_SHOW_ID) {
+            updated = favTVShowHelper.update(uri.getLastPathSegment(), values);
+        } else {
+            updated = 0;
         }
         getContext().getContentResolver().notifyChange(CONTENT_URI, null);
         return updated;
@@ -105,13 +99,10 @@ public class FavTVShowProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         int deleted;
-        switch (sUriMatcher.match(uri)) {
-            case TV_SHOW_ID:
-                deleted = favTVShowHelper.deleteById(uri.getLastPathSegment());
-                break;
-            default:
-                deleted = 0;
-                break;
+        if (sUriMatcher.match(uri) == TV_SHOW_ID) {
+            deleted = favTVShowHelper.deleteById(uri.getLastPathSegment());
+        } else {
+            deleted = 0;
         }
         getContext().getContentResolver().notifyChange(CONTENT_URI, null);
         return deleted;

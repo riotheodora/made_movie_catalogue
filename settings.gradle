@@ -1,2 +1,2 @@
-include ':app', ':mywatchlist'
+include ':app', ':watchlist'
 rootProject.name='Movie Catalogue'

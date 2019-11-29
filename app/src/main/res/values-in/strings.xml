@@ -17,4 +17,6 @@
     <string name="search_hint">Masukkan kata kunci</string>
     <string name="search">Pencarian</string>
     <string name="empty_text">DATA TIDAK DITEMUKAN</string>
+    <string name="daily_reminder">Atur pengingat harian</string>
+    <string name="new_movie_reminder">Pengingat film baru</string>
 </resources>

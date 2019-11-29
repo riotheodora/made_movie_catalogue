@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.moviecatalogue">
-
     <!-- Internet Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -19,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".ReminderActivity"></activity>
 
         <service
             android:name=".widget.StackWidgetService"
@@ -36,6 +36,14 @@
 
         <provider
             android:name=".provider.FavMovieProvider"
+            android:authorities="com.example.moviecatalogue"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.example.moviecatalogue.READ_DATABASE"
+            android:writePermission="com.example.moviecatalogue.WRITE_DATABASE" />
+
+        <provider
+            android:name=".provider.FavTVShowProvider"
             android:authorities="com.example.moviecatalogue"
             android:enabled="true"
             android:exported="true"

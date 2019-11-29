@@ -20,4 +20,7 @@
     <string name="appwidget_text" translatable="false">My Watchlist</string>
     <string name="add_widget" translatable="false">Add widget</string>
     <string name="empty_text">NO DATA</string>
+
+    <string name="daily_reminder">Set daily reminder</string>
+    <string name="new_movie_reminder">New movie reminder</string>
 </resources>
