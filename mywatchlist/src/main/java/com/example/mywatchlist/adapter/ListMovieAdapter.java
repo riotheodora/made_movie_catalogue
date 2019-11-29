@@ -1,7 +1,6 @@
 package com.example.mywatchlist.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mywatchlist.MovieDetailActivity;
 import com.example.mywatchlist.R;
 import com.example.mywatchlist.entity.Movie;
 import com.jakewharton.picasso.OkHttp3Downloader;
@@ -71,15 +69,6 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)
                 .into(holder.imgPoster);
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent detailActivityIntent = new Intent(context, MovieDetailActivity.class);
-                detailActivityIntent.putExtra(MovieDetailActivity.EXTRA_MOVIE, listMovie.get(position));
-                context.startActivity(detailActivityIntent);
-            }
-        });
     }
 
     public void setData(ArrayList<Movie> movies) {

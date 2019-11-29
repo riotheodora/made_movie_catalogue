@@ -1,7 +1,6 @@
 package com.example.mywatchlist.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mywatchlist.R;
-import com.example.mywatchlist.TVShowDetailActivity;
 import com.example.mywatchlist.entity.TVShow;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
@@ -71,15 +69,6 @@ public class ListTVShowAdapter extends RecyclerView.Adapter<ListTVShowAdapter.Li
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)
                 .into(holder.imgPoster);
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent detailActivityIntent = new Intent(context, TVShowDetailActivity.class);
-                detailActivityIntent.putExtra(TVShowDetailActivity.EXTRA_TVSHOW, listTVShow.get(position));
-                context.startActivity(detailActivityIntent);
-            }
-        });
     }
 
     public void setData(ArrayList<TVShow> tvshows) {

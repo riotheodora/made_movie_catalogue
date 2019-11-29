@@ -12,21 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity
-            android:name=".TVShowDetailActivity"
-            android:parentActivityName="com.example.mywatchlist.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.mywatchlist.MainActivity" />
-        </activity>
-
-        <activity
-            android:name=".MovieDetailActivity"
-            android:parentActivityName="com.example.mywatchlist.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.mywatchlist.MainActivity" />
-        </activity>
 
         <activity android:name=".MainActivity">
             <intent-filter>
