@@ -33,9 +33,13 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.List
         this.listMovie = listMovie;
     }
 
+    public ListMovieAdapter() {
+
+    }
+
     class ListViewHolder extends RecyclerView.ViewHolder {
 
-        public final View mView;
+        final View mView;
 
         private ImageView imgPoster;
         TextView tvTitle, tvOverview;

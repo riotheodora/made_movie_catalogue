@@ -30,7 +30,10 @@ public class FavMovieProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        // TODO: Implement this to initialize your content provider on startup.
+
+        favMovieHelper = FavMovieHelper.getInstance(getContext());
+        favMovieHelper.open();
+
         return false;
     }
 

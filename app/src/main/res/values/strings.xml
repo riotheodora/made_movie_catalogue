@@ -17,4 +17,7 @@
     <string name="poster_description">Poster Description</string>
 
     <string name="search_hint">Input Keyword</string>
+    <string name="appwidget_text" translatable="false">My Watchlist</string>
+    <string name="add_widget" translatable="false">Add widget</string>
+    <string name="empty_text">NO DATA</string>
 </resources>

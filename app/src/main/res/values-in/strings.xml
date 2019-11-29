@@ -16,4 +16,5 @@
     <string name="poster_description">Deskripsi Poster</string>
     <string name="search_hint">Masukkan kata kunci</string>
     <string name="search">Pencarian</string>
+    <string name="empty_text">DATA TIDAK DITEMUKAN</string>
 </resources>
