@@ -24,6 +24,7 @@ public class MainViewModelFavTVShow extends AndroidViewModel {
     public void setFavListTVShows() {
         favShowHelper = FavTVShowHelper.getInstance(getApplication().getApplicationContext());
         favShowHelper.open();
+
         favShowHelper.queryAll();
         ArrayList<FavTVShow> favTVShows = MappingHelper.mapFavShowCursorToArrayList(favShowHelper.queryAll());
         listTVShow.setValue(favTVShows);

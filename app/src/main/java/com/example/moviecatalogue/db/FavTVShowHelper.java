@@ -55,6 +55,19 @@ public class FavTVShowHelper {
                 _ID + " ASC");
     }
 
+    // fetch data by ID
+    public Cursor queryById(String id) {
+        return database.query(
+                DATABASE_TABLE,
+                null,
+                TVShowDatabaseContract.TVShowColumns._ID + " = ?",
+                new String[]{id},
+                null,
+                null,
+                null,
+                null);
+    }
+
     // store data
     public long insert(ContentValues values) {
         return database.insert(DATABASE_TABLE, null, values);

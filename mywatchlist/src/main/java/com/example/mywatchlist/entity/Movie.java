@@ -1,9 +1,6 @@
 package com.example.mywatchlist.entity;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class Movie implements Parcelable {
+public class Movie {
 
     private Integer id;
     private String title;
@@ -42,35 +39,10 @@ public class Movie implements Parcelable {
         this.poster_path = poster_path;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public Movie(int id, String title, String overview, String poster_path) {
+        this.id = id;
+        this.title = title;
+        this.overview = overview;
+        this.poster_path = poster_path;
     }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(this.id);
-        parcel.writeString(this.title);
-        parcel.writeString(this.overview);
-        parcel.writeString(this.poster_path);
-    }
-
-    private Movie(Parcel in) {
-        this.id = in.readInt();
-        this.title = in.readString();
-        this.overview = in.readString();
-        this.poster_path = in.readString();
-    }
-
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
-        @Override
-        public Movie createFromParcel(Parcel in) {
-            return new Movie(in);
-        }
-
-        @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
-        }
-    };
 }

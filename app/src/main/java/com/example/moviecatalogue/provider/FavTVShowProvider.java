@@ -9,32 +9,32 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.moviecatalogue.db.FavMovieHelper;
+import com.example.moviecatalogue.db.FavTVShowHelper;
 
 import static com.example.moviecatalogue.db.MovieDatabaseContract.AUTHORITY;
 import static com.example.moviecatalogue.db.MovieDatabaseContract.CONTENT_URI;
 import static com.example.moviecatalogue.db.MovieDatabaseContract.TABLE_NAME;
 
-public class FavMovieProvider extends ContentProvider {
-    private static final int MOVIE = 1;
-    private static final int MOVIE_ID = 2;
-    private FavMovieHelper favMovieHelper;
+public class FavTVShowProvider extends ContentProvider {
+    private static final int TV_SHOW = 1;
+    private static final int TV_SHOW_ID = 2;
+    private FavTVShowHelper favTVShowHelper;
 
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
-        sUriMatcher.addURI(AUTHORITY, TABLE_NAME, MOVIE);
+        sUriMatcher.addURI(AUTHORITY, TABLE_NAME, TV_SHOW);
 
         sUriMatcher.addURI(AUTHORITY,
                 TABLE_NAME + "/#",
-                MOVIE_ID);
+                TV_SHOW_ID);
     }
 
     @Override
     public boolean onCreate() {
 
-        favMovieHelper = FavMovieHelper.getInstance(getContext());
-        favMovieHelper.open();
+        favTVShowHelper = FavTVShowHelper.getInstance(getContext());
+        favTVShowHelper.open();
 
         return true;
     }
@@ -46,11 +46,11 @@ public class FavMovieProvider extends ContentProvider {
         Cursor cursor;
 
         switch (sUriMatcher.match(uri)){
-            case MOVIE:
-                cursor = favMovieHelper.queryAll();
+            case TV_SHOW:
+                cursor = favTVShowHelper.queryAll();
                 break;
-            case MOVIE_ID:
-                cursor = favMovieHelper.queryById(uri.getLastPathSegment());
+            case TV_SHOW_ID:
+                cursor = favTVShowHelper.queryById(uri.getLastPathSegment());
                 break ;
             default:
                 cursor = null;
@@ -72,8 +72,8 @@ public class FavMovieProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
         long added;
         switch (sUriMatcher.match(uri)) {
-            case MOVIE:
-                added = favMovieHelper.insert(values);
+            case TV_SHOW:
+                added = favTVShowHelper.insert(values);
                 break;
             default:
                 added = 0;
@@ -91,8 +91,8 @@ public class FavMovieProvider extends ContentProvider {
                       @Nullable String selection, @Nullable String[] selectionArgs) {
         int updated;
         switch (sUriMatcher.match(uri)) {
-            case MOVIE_ID:
-                updated = favMovieHelper.update(uri.getLastPathSegment(), values);
+            case TV_SHOW_ID:
+                updated = favTVShowHelper.update(uri.getLastPathSegment(), values);
                 break;
             default:
                 updated = 0;
@@ -106,8 +106,8 @@ public class FavMovieProvider extends ContentProvider {
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         int deleted;
         switch (sUriMatcher.match(uri)) {
-            case MOVIE_ID:
-                deleted = favMovieHelper.deleteById(uri.getLastPathSegment());
+            case TV_SHOW_ID:
+                deleted = favTVShowHelper.deleteById(uri.getLastPathSegment());
                 break;
             default:
                 deleted = 0;
