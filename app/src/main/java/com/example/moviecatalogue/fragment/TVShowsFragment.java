@@ -1,12 +1,18 @@
 package com.example.moviecatalogue.fragment;
 
 import android.app.ProgressDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +35,9 @@ public class TVShowsFragment extends Fragment {
     private RecyclerView rvTVShows;
     private MainViewModelTVShow mainViewModel;
 
+    private SearchView searchView = null;
+    private SearchView.OnQueryTextListener queryTextListener;
+
     public TVShowsFragment() {
         // Required empty public constructor
     }
@@ -37,15 +46,36 @@ public class TVShowsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_tvshows, container, false);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.fragment_menu, menu);
-
+        inflater.inflate(R.menu.main_menu, menu);
         super.onCreateOptionsMenu(menu,inflater);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+
+        if (searchManager != null) {
+            searchView = (SearchView) searchItem.getActionView();
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+            searchView.setQueryHint(getResources().getString(R.string.search_hint));
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    Toast.makeText(getActivity(), query, Toast.LENGTH_LONG).show();
+                    return true;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    return false;
+                }
+            });
+            searchView.setOnQueryTextListener(queryTextListener);
+        }
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -75,5 +105,14 @@ public class TVShowsFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_search){
+
+        }
+        searchView.setOnQueryTextListener(queryTextListener);
+        return super.onOptionsItemSelected(item);
     }
 }
