@@ -12,4 +12,7 @@ public interface GetMovieDataService {
 
     @GET("search/movie?api_key=ee8db69c065a14a15bb13e12ab61a116&language=en-US")
     Call<MovieResult> getSearchedMovies(@Query("query") String movie_name);
+
+    @GET("discover/movie?api_key=ee8db69c065a14a15bb13e12ab61a116&language=en-US")
+    Call<MovieResult> getNewReleaseMovie(@Query("primary_release_date.gte") String today);
 }

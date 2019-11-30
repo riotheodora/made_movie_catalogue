@@ -43,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, FavoriteActivity.class);
                 startActivity(intent);
                 break;
-
+            case R.id.reminder_setting:
+                Intent rIntent = new Intent(MainActivity.this, ReminderActivity.class);
+                startActivity(rIntent);
+                break;
             case R.id.action_change_settings:
                 Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
                 startActivity(mIntent);

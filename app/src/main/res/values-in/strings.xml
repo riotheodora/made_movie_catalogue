@@ -19,4 +19,13 @@
     <string name="empty_text">DATA TIDAK DITEMUKAN</string>
     <string name="daily_reminder">Atur pengingat harian</string>
     <string name="new_movie_reminder">Pengingat film baru</string>
+    <string name="motd">Lesu? Yuk nonton film!</string>
+    <string name="catchphrase">Buka aplikasi dan temukan rekomendasi untuk kamu</string>
+    <string name="disable_daily_reminder">Pengingat harian dimatikan</string>
+    <string name="enable_daily_reminder">Pengingat harian dihidupkan</string>
+    <string name="new_release">%s di bioskop SEKARANG!</string>
+    <string name="release_message">Cek SEKARANG.</string>
+    <string name="disable_new_release">Pengingat film baru dimatikan</string>
+    <string name="enable_new_release">Pengingat film baru dihidupkan</string>
+    <string name="notification_setting">Pengaturan Notifikasi</string>
 </resources>

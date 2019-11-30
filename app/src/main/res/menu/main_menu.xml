@@ -10,6 +10,11 @@
             app:showAsAction="ifRoom" />
 
         <item
+            android:id="@+id/reminder_setting"
+            android:title="@string/notification_setting"
+            app:showAsAction="never" />
+
+        <item
             android:id="@+id/action_change_settings"
             android:title="@string/menu_1"
             app:showAsAction="never"/>

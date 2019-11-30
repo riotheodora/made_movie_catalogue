@@ -23,4 +23,18 @@
 
     <string name="daily_reminder">Set daily reminder</string>
     <string name="new_movie_reminder">New movie reminder</string>
+
+    <string name="motd">Feeling blue? Let\'s watch some movies!</string>
+    <string name="catchphrase">Open the app and see your recommendations.</string>
+
+    <string name="enable_daily_reminder">Daily reminder is enabled</string>
+    <string name="disable_daily_reminder">Daily reminder is disabled</string>
+
+    <string name="new_release">%s is on theater NOW!</string>
+    <string name="release_message">Check it out NOW.</string>
+
+    <string name="enable_new_release">New movie reminder is enabled</string>
+    <string name="disable_new_release">New movie reminder is disabled</string>
+
+    <string name="notification_setting">Notification Setting</string>
 </resources>
