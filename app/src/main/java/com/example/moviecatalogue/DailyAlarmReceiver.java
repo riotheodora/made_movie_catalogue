@@ -76,8 +76,8 @@ public class DailyAlarmReceiver extends BroadcastReceiver {
         Intent intent = new Intent(context, DailyAlarmReceiver.class);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 7);
-        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 20);
         calendar.set(Calendar.SECOND, 0);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, ID_DAILY, intent, PendingIntent.FLAG_UPDATE_CURRENT);

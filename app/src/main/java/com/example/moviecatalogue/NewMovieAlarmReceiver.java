@@ -31,6 +31,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewMovieAlarmReceiver extends BroadcastReceiver {
 
@@ -51,8 +53,13 @@ public class NewMovieAlarmReceiver extends BroadcastReceiver {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = df.format(today);
 
-        GetMovieDataService getMovieDataService = RetrofitClientInstance.getRetrofitInstance().create(GetMovieDataService.class);
-        Call<MovieResult> call = getMovieDataService.getNewReleaseMovie(formattedDate);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.themoviedb.org/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        GetMovieDataService jsonPlaceHolder = retrofit.create(GetMovieDataService.class);
+        Call<MovieResult> call = jsonPlaceHolder.getNewReleaseMovie(formattedDate);
         call.enqueue(new Callback<MovieResult>() {
 
             @Override
@@ -62,7 +69,7 @@ public class NewMovieAlarmReceiver extends BroadcastReceiver {
                     return;
                 }
                 result = response.body();
-                listMovies.setValue(result.getResults());
+                data = result.getResults();
                 for (int i = 0; data.get(i) != null && i < 2; i++) {
                     String title = String.format(context.getString(R.string.new_release), data.get(i).getTitle());
                     String message = context.getString(R.string.release_message);
@@ -76,6 +83,32 @@ public class NewMovieAlarmReceiver extends BroadcastReceiver {
                 Log.e("Error load data", t.getMessage());
             }
         });
+
+//        GetMovieDataService getMovieDataService = RetrofitClientInstance.getRetrofitInstance().create(GetMovieDataService.class);
+//        Call<MovieResult> call = getMovieDataService.getNewReleaseMovie(formattedDate);
+//        call.enqueue(new Callback<MovieResult>() {
+//
+//            @Override
+//            public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
+//                if (!response.isSuccessful()) {
+//                    Log.e("Error load data", response.code() + " ");
+//                    return;
+//                }
+//                result = response.body();
+//                listMovies.setValue(result.getResults());
+//                for (int i = 0; data.get(i) != null && i < 2; i++) {
+//                    String title = String.format(context.getString(R.string.new_release), data.get(i).getTitle());
+//                    String message = context.getString(R.string.release_message);
+//                    showAlarmNotification(context, title, message, notifId + i);
+//                    Log.e("alarm", "onResponse: " + data.get(i).getTitle());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<MovieResult> call, Throwable t) {
+//                Log.e("Error load data", t.getMessage());
+//            }
+//        });
     }
 
     private void showAlarmNotification(Context context, String title, String message, int notifId) {
