@@ -46,7 +46,13 @@ public class NewMovieAlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
-        final MutableLiveData<ArrayList<Movie>> listMovies = new MutableLiveData<>();
+//        String title = context.getString(R.string.new_release);
+//        String message = context.getString(R.string.release_message);
+//        int notifId = ID_NEW_MOVIE;
+//
+//        showAlarmNotification(context, title, message, notifId);
+
+//        final MutableLiveData<ArrayList<Movie>> listMovies = new MutableLiveData<>();
         final int notifId = ID_NEW_MOVIE;
         Date today = Calendar.getInstance().getTime();
 
@@ -54,12 +60,12 @@ public class NewMovieAlarmReceiver extends BroadcastReceiver {
         String formattedDate = df.format(today);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/")
+                .baseUrl("https://api.themoviedb.org/3/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        GetMovieDataService jsonPlaceHolder = retrofit.create(GetMovieDataService.class);
-        Call<MovieResult> call = jsonPlaceHolder.getNewReleaseMovie(formattedDate);
+        GetMovieDataService getMovieDataService = retrofit.create(GetMovieDataService.class);
+        Call<MovieResult> call = getMovieDataService.getNewReleaseMovie(formattedDate);
         call.enqueue(new Callback<MovieResult>() {
 
             @Override
@@ -149,7 +155,7 @@ public class NewMovieAlarmReceiver extends BroadcastReceiver {
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 8);
-        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.MINUTE, 40);
         calendar.set(Calendar.SECOND, 0);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, ID_NEW_MOVIE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
